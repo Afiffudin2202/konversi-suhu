@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konversi Suhu</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        function celsiusToFahrenheit(celsius) {
+            return (celsius * 9/5) + 32;
+        }
+
+        function celsiusToKelvin(celsius) {
+            return celsius + 273.15;
+        }
+
+        function fahrenheitToCelsius(fahrenheit) {
+            return (fahrenheit - 32) * 5/9;
+        }
+
+        function fahrenheitToKelvin(fahrenheit) {
+            return (fahrenheit - 32) * 5/9 + 273.15;
+        }
+
+        function kelvinToCelsius(kelvin) {
+            return kelvin - 273.15;
+        }
+
+        function kelvinToFahrenheit(kelvin) {
+            return (kelvin - 273.15) * 9/5 + 32;
+        }
+
+        function convertTemperature(value, fromUnit, toUnit) {
+            switch (fromUnit + ' to ' + toUnit) {
+                case 'C to F': return celsiusToFahrenheit(value);
+                case 'C to K': return celsiusToKelvin(value);
+                case 'F to C': return fahrenheitToCelsius(value);
+                case 'F to K': return fahrenheitToKelvin(value);
+                case 'K to C': return kelvinToCelsius(value);
+                case 'K to F': return kelvinToFahrenheit(value);
+                default: return 'Invalid conversion';
+            }
+        }
+
+        function convert() {
+            var fromUnit = document.getElementById('fromUnit').value;
+            var toUnit = document.getElementById('toUnit').value;
+            var value = parseFloat(document.getElementById('value').value);
+
+            if (isNaN(value)) {
+                alert('Masukkan nilai suhu yang valid.');
+                return;
+            }
+
+            var result = convertTemperature(value, fromUnit, toUnit);
+            document.getElementById('result').textContent = value + ' ' + fromUnit + ' sama dengan ' + result + ' ' + toUnit;
+        }
+    </script>
+</head>
+<body>
+    <h1>Konversi Suhu</h1>
+    <label for="fromUnit">Pilih satuan suhu awal:</label>
+    <select id="fromUnit">
+        <option value="C">Celsius (C)</option>
+        <option value="F">Fahrenheit (F)</option>
+        <option value="K">Kelvin (K)</option>
+    </select>
+    <br><br>
+    <label for="value">Masukkan nilai suhu:</label>
+    <input type="text" id="value">
+    <br><br>
+    <label for="toUnit">Pilih satuan suhu yang diinginkan:</label>
+    <select id="toUnit">
+        <option value="C">Celsius (C)</option>
+        <option value="F">Fahrenheit (F)</option>
+        <option value="K">Kelvin (K)</option>
+    </select>
+    <br><br>
+    <button onclick="convert()">Konversi</button>
+    <p id="result"></p>
+</body>
+</html>
